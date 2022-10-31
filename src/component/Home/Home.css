@@ -1,0 +1,13 @@
+.img-center{
+    display: flex;
+    justify-content: center;
+}
+.grid-img{
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 0.5em;
+}
+.img-all-foods{
+    height: 330px;
+    width: 300px;
+}
