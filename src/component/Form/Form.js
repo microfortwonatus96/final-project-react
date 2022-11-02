@@ -4,6 +4,8 @@ import axios from "axios";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { BASE_URL, API_KEY } from "../../Environment";
+import imgSignIn from '../../img/login.svg'
+import imgSignUp from '../../img/register.svg'
 
 const Form = () => {
   const [classSignUp, setClassSignUp] = useState("");
@@ -133,7 +135,7 @@ const Form = () => {
                   placeholder="Password"
                 />
               </div>
-              <input type="submit" value="Login" class="btn solid" />
+              <input type="submit" value="Login" class="button-login solid" />
               <p class="social-text">Or Sign in with social platforms</p>
               <div class="social-media">
                 <a class="social-icon">
@@ -251,7 +253,7 @@ const Form = () => {
                   <div>{formik.errors.phoneNumber}</div>
                 ) : null}
               </div>
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" class="button-login btn-primary">
                 Submit
               </button>
             </form>
@@ -268,14 +270,14 @@ const Form = () => {
                 Debitis, ex ratione. Aliquid!
               </p>
               <button
-                class="btn transparent"
+                class="button-login transparent"
                 id="sign-up-btn"
                 onClick={() => handleSignUp()}
               >
                 Sign up
               </button>
             </div>
-            <img src="img/log.svg" class="image" alt="" />
+            <img src={imgSignIn} class="image" alt="" />
           </div>
 
           <div class="panel right-panel">
@@ -286,14 +288,14 @@ const Form = () => {
                 laboriosam ad deleniti.
               </p>
               <button
-                class="btn transparent"
+                class="button-login transparent"
                 id="sign-in-btn"
                 onClick={() => handleSignIn()}
               >
                 Sign in
               </button>
             </div>
-            <img src="img/register.svg" class="image" alt="" />
+            <img src={imgSignUp} class="image" alt="" />
           </div>
         </div>
       </div>

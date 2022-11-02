@@ -6,6 +6,8 @@ import Form from './component/Form/Form';
 import Home from './component/Home/Home';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import DetailFoods from './component/DetailFoods/DetailFoods';
+import { AddFoods } from './component/AddFoods/AddFoods';
 
 const router = createBrowserRouter([
   {
@@ -24,14 +26,14 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       
-      // {
-      //   path: "/watchlist",
-      //   element: <Foods />,
-      // },
-      // {
-      //   path: "/movielisted/:listID",
-      //   element: <MovieList />,
-      // },
+      {
+        path: "/DetailFoods/:id",
+        element: <DetailFoods />,
+      },
+      {
+        path: "/AddFoods",
+        element: <AddFoods />,
+      },
     ]
     ,
     

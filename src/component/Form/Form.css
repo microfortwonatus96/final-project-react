@@ -69,7 +69,7 @@ form.sign-in-form {
 .input-field {
   max-width: 380px;
   width: 100%;
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
   margin: 10px 0;
   border: 1px solid #df4adf ;
   height: 55px;
@@ -86,7 +86,7 @@ select {
 
 .select-field {
   max-width: 380px;
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
   border: none;
   height: 52px;
   border-radius: 55px;
@@ -148,7 +148,7 @@ select {
   border-color: #fd83fd;
 }
 
-.btn {
+.button-login {
   width: 150px;
   background-color: #df4adf;
   border: none;
@@ -163,7 +163,7 @@ select {
   transition: 0.5s;
 }
 
-.btn:hover {
+.button-login:hover {
   background-color: #4d84e2;
 }
 .panels-container {
@@ -232,7 +232,7 @@ select {
   padding: 0.7rem 0;
 }
 
-.btn.transparent {
+.button-login.transparent {
   margin: 0;
   background: none;
   border: 2px solid #fff;
@@ -345,7 +345,7 @@ select {
     padding: 0.5rem 0;
   }
 
-  .btn.transparent {
+  .button-login.transparent {
     width: 110px;
     height: 35px;
     font-size: 0.7rem;

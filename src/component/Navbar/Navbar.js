@@ -1,8 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom"
-import { useEffect} from 'react'
-import axios from "axios";
-import { BASE_URL, API_KEY, JWT_TOKEN } from "../../Environment";
+// import { useEffect} from 'react'
+// import axios from "axios";
+// import { BASE_URL, API_KEY, JWT_TOKEN } from "../../Environment";
 import "../Navbar/Navbar.css";
 
 const Navbar = () => {
