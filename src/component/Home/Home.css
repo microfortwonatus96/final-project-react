@@ -1,7 +1,100 @@
+/* home-section */
+.home-section{
+    padding: 2rem 6%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem;
+    min-height: 100vh;
+    align-items: center;
+    background: #e3f2fd;
+
+}
+.home-section .content{
+    flex:1 1 40rem;
+    padding-top: .5rem;
+}
+.home-section .img-home{
+    /* width: 50%; */
+}
+.home-section .img-home img{
+    width: 450px;
+    animation: float 3s linear infinite;
+    border-radius: 50%;
+}
+
+@keyframes float{
+    0%, 100%{
+        transform: translateY(0rem);
+    }
+    50%{
+        transform: translateY(3rem);
+    }
+}
+
+.home-section .content h3{
+    font-size: 3rem;
+    color: #333;
+}
+.home-section .content p{
+    font-size: 1rem;
+    color: #666;
+    padding: 1rem 0;
+    /* width: 50%; */
+}
+.btn-home{
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border: 1px solid #0d6efd;;
+    color: #0d6efd;;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: .5rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    margin-top: 1rem;
+    text-decoration: none;
+}
+
+.btn-home::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0%;
+    height: 100%;
+    background: #0d6efd;
+    transition: .3s linear;
+    z-index: -1;
+}
+
+.btn-home:hover::before{
+    width: 100%;
+    left: 0;
+}
+
+.btn-home:hover{
+    color: #fff;
+} 
+/* end-home-section */
+
+/* foods  */
+.bg-food{
+    background-color: #dbdde7;
+    padding: 40px 80px;
+}
+.title-h3{
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    color: #333;
+}
 .img-center{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    margin: 40px 0;
 }
 .grid-img{
     display:grid;
@@ -39,7 +132,7 @@
     width: 100%;
     background: rgba(255, 255, 255,.9);
     padding: 1rem;
-    padding-top: 5rem;
+    padding-top: 3rem;
     text-align: center;
 }
 

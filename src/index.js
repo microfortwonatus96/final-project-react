@@ -8,6 +8,9 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import DetailFoods from './component/DetailFoods/DetailFoods';
 import { AddFoods } from './component/AddFoods/AddFoods';
+import Footer from './component/Footer/Footer';
+import { MyFavorite } from './component/MyFavorite/MyFavorite';
+import { Foods } from './component/Foods/Foods';
 
 const router = createBrowserRouter([
   {
@@ -16,7 +19,7 @@ const router = createBrowserRouter([
       <>
         <Navbar />
         <Outlet />
-        {/* <Footer /> */}
+        <Footer />
       </>
     ),
     errorElement: <p>Page Not Found</p>,
@@ -25,13 +28,21 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: "/my-favorite",
+        element: <MyFavorite />,
+      },
+      {
+        path: "/foods",
+        element: <Foods />,
+      },
       
       {
-        path: "/DetailFoods/:id",
+        path: "/detail-foods/:id",
         element: <DetailFoods />,
       },
       {
-        path: "/AddFoods",
+        path: "/add-foods",
         element: <AddFoods />,
       },
     ]

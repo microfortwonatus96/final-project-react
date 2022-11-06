@@ -1,3 +1,6 @@
 .navbar-container{
-    margin-bottom: 40px;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    padding: 0.625em 3.75rem;
 }

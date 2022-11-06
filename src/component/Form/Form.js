@@ -6,9 +6,11 @@ import { useFormik } from "formik";
 import { BASE_URL, API_KEY } from "../../Environment";
 import imgSignIn from '../../img/login.svg'
 import imgSignUp from '../../img/register.svg'
+import UploadImage from "../UploadImage/UploadImage";
 
 const Form = () => {
   const [classSignUp, setClassSignUp] = useState("");
+  const [UploadFile, setUploadFile] = useState('');
 
   const handleSignUp = () => {
     setClassSignUp("sign-up-mode");
@@ -49,10 +51,12 @@ const Form = () => {
           passwordRepeat: values.passwordRepeat,
           role: values.role,
           phoneNumber: values.phoneNumber,
+          profilePictureUrl: UploadFile,
         },
       })
         .then((Response) => {
           alert("Registration Successful !!");
+          window.location.reload()
         })
         .catch((e) => {
           alert("Registration Failed !!");
@@ -84,13 +88,17 @@ const Form = () => {
       })
         .then((Response) => {
           alert("Login successful !!");
-          console.log("cek:",Response);
           const token = Response.data.token;
-          console.log("cek token", token);
-          localStorage.setItem("Token", token);
+          localStorage.setItem("token", token);
+
+          const role = Response.data.user.role;
+          localStorage.setItem("role", role);
+
+          const name = Response.data.user.name;
+          localStorage.setItem("name", name);
 
           const email = values.email;
-          localStorage.setItem("Email", email);
+          localStorage.setItem("email", email);
           window.location.href = "/";
         })
         .catch((error) => {
@@ -109,15 +117,16 @@ const Form = () => {
             <form onSubmit={formLogin.handleSubmit} class="sign-in-form">
               <h2 class="title">Sign in</h2>
               <div class="input-field">
-                <i class="fas fa-user"></i>
+                <i class="fas fa-envelope"></i>
                 <input
                   id="email"
                   name="email"
                   type="text"
+                  className="input-box"
                   onChange={formLogin.handleChange}
                   onBlur={formLogin.handleBlur}
                   value={formLogin.values.email}
-                  placeholder="Username"
+                  placeholder="Email"
                 />
                 {formLogin.touched.email && formLogin.errors.email ? (
                   <div>{formLogin.errors.email}</div>
@@ -227,14 +236,17 @@ const Form = () => {
               <div class="input-field">
                 <i class="fas fa-user"></i>
                 <select
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.role}
                   component="select"
-                  id="location"
-                  name="location"
+                  id="role"
+                  name="role"
                   multiple={false}
                   class="select-field"
                 >
-                  <option value="1">Admin</option>
-                  <option value="2">User</option>
+                  <option value="admin">Admin</option>
+                  <option value="user">User</option>
                 </select>
               </div>
               <div class="input-field">
@@ -242,7 +254,7 @@ const Form = () => {
                 <input
                   id="phoneNumber"
                   name="phoneNumber"
-                  type="number"
+                  type="text"
                   placeholder="Phone Number"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -252,6 +264,10 @@ const Form = () => {
                 {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
                   <div>{formik.errors.phoneNumber}</div>
                 ) : null}
+              </div>
+              <div className="mb-3">
+                <UploadImage
+                onChange={(value) => setUploadFile(value)} />
               </div>
               <button type="submit" class="button-login btn-primary">
                 Submit
