@@ -265,7 +265,7 @@ const Form = () => {
                   <div>{formik.errors.phoneNumber}</div>
                 ) : null}
               </div>
-              <div className="mb-3">
+              <div style={{position: 'relative', left: '30px'}}>
                 <UploadImage
                 onChange={(value) => setUploadFile(value)} />
               </div>

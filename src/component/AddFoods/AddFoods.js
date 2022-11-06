@@ -6,9 +6,12 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import axios from "axios";
 import { useState } from "react";
+import UploadImage from "../UploadImage/UploadImage";
+
 
 export const AddFoods = () => {
   const [ingredients, setIngredients] = useState(["test"]);
+  const [UploadFile, setUploadFile] = useState('');
 
   const handleAddIngredients = () => {
     setIngredients([...ingredients, ""]);
@@ -21,9 +24,6 @@ export const AddFoods = () => {
   };
 
   const handleChangeIngredients = (index, value) => {
-    // const values = [...ingredients];
-    // values[index] = value;
-    // setIngredients(values);
     setIngredients(previous => {
       const values = [...previous];
       values[index] = value;
@@ -54,12 +54,13 @@ export const AddFoods = () => {
           name: values.name,
           description: values.description,
           imageUrl: values.imageUrl,
-          ingredients: ingredients
+          ingredients: ingredients,
+          profilePictureUrl: UploadFile
         },
       })
         .then((res) => {
           console.log(res);
-          window.location.href = "/";
+          window.location.href = "/foods";
         })
         .catch((error) => {
           console.log(error);
@@ -147,6 +148,11 @@ export const AddFoods = () => {
             </div>
           );
         })}
+        </div>
+
+        <div className="input-file">
+          <div><UploadImage
+          onChange={(value) => setUploadFile(value)} /></div>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>

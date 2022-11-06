@@ -54,7 +54,7 @@ const UploadImage = ({onChange}) => {
   }
 
   return (
-    <div className="d-flex" style={{position: 'relative', left: '30px'}}>
+    <div className="d-flex" >
         <div className="input-field">
             <input
                 type="file"
