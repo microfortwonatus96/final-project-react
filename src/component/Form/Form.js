@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState} from "react";
 import "../Form/Form.css";
 import axios from "axios";
 import * as Yup from "yup";
@@ -147,18 +147,18 @@ const Form = () => {
               <input type="submit" value="Login" class="button-login solid" />
               <p class="social-text">Or Sign in with social platforms</p>
               <div class="social-media">
-                <a class="social-icon">
+                <div class="social-icon">
                   <i class="fab fa-twitter"></i>
-                </a>
-                <a class="social-icon">
+                </div>
+                <div class="social-icon">
                   <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a className="social-icon">
+                </div>
+                <div className="social-icon">
                   <i class="fab fa-facebook-f"></i>
-                </a>
-                <a class="social-icon">
+                </div>
+                <div class="social-icon">
                   <i class="fab fa-google"></i>
-                </a>
+                </div>
               </div>
             </form>
             {/* end-sign-in  */}
@@ -245,6 +245,7 @@ const Form = () => {
                   multiple={false}
                   class="select-field"
                 >
+                  <option value="">Select a Role</option>
                   <option value="admin">Admin</option>
                   <option value="user">User</option>
                 </select>

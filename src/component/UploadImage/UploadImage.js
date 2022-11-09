@@ -59,10 +59,10 @@ const UploadImage = ({onChange}) => {
             <input
                 type="file"
                 ref={fileUpload}
-                className="form-control"
                 id="formFile"
                 onChange={handleUploadChange}
                 accepts="image/*" 
+                className="add-input"
             />
             
             </div>

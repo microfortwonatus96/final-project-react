@@ -38,8 +38,8 @@ const Home = () => {
     <>
       <div className="home-section">
         <div className="content">
-          <h3>Welcome To Our Food</h3>
-          <p>
+          <h3 style={{color: '#0d6efd'}}>Welcome To Our Food</h3>
+          <p style={{fontWeight: 'bold'}}>
             Lorem Ipsum is simply dummy text of the printing and
             typesetting industry. Lorem Ipsum has been the
             industry's standard dummy text ever since the 1500s,

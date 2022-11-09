@@ -17,7 +17,7 @@ const DetailFoods = () => {
       url: `${BASE_URL}/api/v1/foods/${id}`,
       headers: {
         apiKey: `${API_KEY}`,
-        Authorization: `Bearer ${localStorage.getItem(`token`)}`,
+        // Authorization: `Bearer ${localStorage.getItem(`token`)}`,
       },
     })
       .then((response) => {

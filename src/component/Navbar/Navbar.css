@@ -4,3 +4,17 @@
     z-index: 1000;
     padding: 0.625em 3.75rem;
 }
+
+li .nav-link:hover{
+    background-color: #1868e0;
+    border-radius: 10px;
+}
+
+.box-nav{
+    display: flex;
+    justify-content: space-between !important;
+}
+
+.btn-profile:hover{
+    background-color: aliceblue !important;
+}

@@ -1,5 +1,4 @@
 import React from "react";
-// import imgFoods from "../../img/steak.jpg";
 import "../AddFoods/AddFoods.css";
 import { BASE_URL, API_KEY } from "../../Environment";
 import * as Yup from "yup";
@@ -10,8 +9,8 @@ import UploadImage from "../UploadImage/UploadImage";
 
 
 export const AddFoods = () => {
-  const [ingredients, setIngredients] = useState(["test"]);
-  const [UploadFile, setUploadFile] = useState('');
+  const [ingredients, setIngredients] = useState([""]);
+  const [SavePicture, setSavePicture] = useState('');
 
   const handleAddIngredients = () => {
     setIngredients([...ingredients, ""]);
@@ -35,12 +34,11 @@ export const AddFoods = () => {
     initialValues: {
       name: "",
       description: "",
-      imageUrl: "",
+      ingredients: [],
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Required"),
       description: Yup.string().required("Required"),
-      imageUrl: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
       axios({
@@ -53,9 +51,8 @@ export const AddFoods = () => {
         data: {
           name: values.name,
           description: values.description,
-          imageUrl: values.imageUrl,
-          ingredients: ingredients,
-          profilePictureUrl: UploadFile
+          imageUrl: SavePicture,
+          ingredients: ingredients
         },
       })
         .then((res) => {
@@ -102,7 +99,7 @@ export const AddFoods = () => {
           />
         </div>
 
-        <div class="">
+        {/* <div class="">
           <input
             id="imageUrl"
             name="imageUrl"
@@ -113,12 +110,12 @@ export const AddFoods = () => {
             value={formAddFoods.values.imageUrl}
             placeholder="imageUrl"
           />
-        </div>
+        </div> */}
 
         <div>
         {ingredients.map((ingredient, index) => {
           return (
-            <div class="d-flex" key={index}>
+            <div class="d-flex gap-2" key={index}>
               <input
                 id="ingredients"
                 name="ingredients"
@@ -134,6 +131,7 @@ export const AddFoods = () => {
               <button
                 type="button"
                 className="btn btn-primary"
+                style={{fontSize:'12px'}}
                 onClick={() => handleAddIngredients()}
               >
                 Add
@@ -141,6 +139,7 @@ export const AddFoods = () => {
               <button
                 type="button"
                 className="btn btn-danger"
+                style={{fontSize:'12px'}}
                 onClick={() => handleDeleteIngredients(index)}
               >
                 Delete
@@ -152,7 +151,7 @@ export const AddFoods = () => {
 
         <div className="input-file">
           <div><UploadImage
-          onChange={(value) => setUploadFile(value)} /></div>
+          onChange={(value) => setSavePicture(value)} /></div>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>

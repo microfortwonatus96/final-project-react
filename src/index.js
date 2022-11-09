@@ -11,6 +11,9 @@ import { AddFoods } from './component/AddFoods/AddFoods';
 import Footer from './component/Footer/Footer';
 import { MyFavorite } from './component/MyFavorite/MyFavorite';
 import { Foods } from './component/Foods/Foods';
+import AllUsers from './component/AllUsers/AllUsers';
+import Profile from './component/Profile/Profile';
+import Rating from './component/Rating/Rating';
 
 const router = createBrowserRouter([
   {
@@ -36,7 +39,14 @@ const router = createBrowserRouter([
         path: "/foods",
         element: <Foods />,
       },
-      
+      {
+        path: "/all-users",
+        element: <AllUsers />,
+      },    
+      {
+        path: "/profile-user",
+        element: <Profile />,
+      },       
       {
         path: "/detail-foods/:id",
         element: <DetailFoods />,
@@ -44,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/add-foods",
         element: <AddFoods />,
+      },
+      {
+        path: "/rating/:foodsID",
+        element: <Rating />,
       },
     ]
     ,
