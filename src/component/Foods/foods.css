@@ -34,3 +34,7 @@
 .btn-create:hover{
     color: #fff;
 } 
+
+.set-rating{
+    text-decoration: none;
+}

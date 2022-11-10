@@ -76,7 +76,7 @@ export const MyFavorite = () => {
     <>
     <section>
       <div className="bg-food">
-        <h2 className="color1 text-center mt-5 fw-bolder">My Favorite</h2>
+        <h2 className="mt-5 fw-bold text-center">My Favorite</h2>
         <div className="img-center">
           <div className="grid-img">
           {MyFavorite &&
@@ -85,7 +85,7 @@ export const MyFavorite = () => {
                 <div className="card-myFavorite" key={liked.id}>
                   <img
                       src={liked.imageUrl}
-                      className="card-img-top mx-auto mt-3 "
+                      className="mt-3 card-img-top mx-auto"
                       alt={liked.name}
                     />
                   <div className="card-body-myFavorite">
@@ -110,7 +110,7 @@ export const MyFavorite = () => {
                     </div>
                     <div className="" style={{borderTop:'1px solid #9b9fb3', width:'100%'}}>
                       <small className="text-muted">
-                        <Link to={`/foodrating/${liked.id}`}>
+                        <Link to={`/rating/${liked.id}`}>
                           <i
                             className="fa-solid fa-star m-1"
                             style={{ color: `gold` }}

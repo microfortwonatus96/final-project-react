@@ -9,7 +9,6 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import "../Foods/foods.css";
 
-
 export const Foods = () => {
   const [AllFoods, setAllFoods] = useState([]);
   const [savePicture, setSavePicture] = useState("");
@@ -133,24 +132,6 @@ export const Foods = () => {
     }),
   });
 
-  const handleEdit = (id) => {
-      axios({
-        method: "get",
-        url: `${BASE_URL}/api/v1/foods/${id}`,
-        headers: {
-          apiKey: `${API_KEY}`,
-          Authorization: `Bearer ${localStorage.getItem(`token`)}`,
-        },
-      })
-        .then((response) => {
-          console.log(response);
-          // window.location.reload();
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-  };
-
   const handleSubmit = (e, id) => {
     e.preventDefault();
     const values = formik.values;
@@ -177,7 +158,6 @@ export const Foods = () => {
         console.error(error);
       });
   }
-
 
   return (
     <>
@@ -209,8 +189,10 @@ export const Foods = () => {
                           <h5>{foods.name}</h5>
                           <h3>{foods.ingredients}</h3>
                           <div className="d-flex justify-content-center gap-2">
-                            <i class="fa-solid fa-star"></i>
-                            <p style={{position:'relative', bottom: '2px'}}>{foods.rating}</p>
+                            <Link className="d-flex gap-2 set-rating" to={`/rating/${foods.id}`}>
+                              <i class="fa-solid fa-star" style={{color:'#FFD700', fontSize:'25px'}}></i>
+                              <p style={{position:'relative', bottom: '2px',fontSize:'20px'}}>{foods.rating}</p>
+                            </Link>
                             <i
                               className="fa-solid fa-heart"
                               onClick={() =>
@@ -218,10 +200,10 @@ export const Foods = () => {
                               }
                               on
                               style={{
-                                color: `${foods.isLike ? "red" : ""}`,
+                                color: `${foods.isLike ? "red" : ""}`, cursor: 'pointer', fontSize:'25px'
                               }}
                             ></i>
-                            <p style={{position:'relative', bottom: '2px'}}>{foods.totalLikes}</p>
+                            <p style={{position:'relative', bottom: '2px',fontSize:'20px' }}>{foods.totalLikes}</p>
                           </div>
                           {/* <p>isLike: {foods.isLike}</p> */}
                           <div className="d-flex justify-content-center gap-2">
@@ -247,8 +229,7 @@ export const Foods = () => {
                                 className="btn btn-success"
                                 style={{ fontSize: "0.75rem" }}
                                 data-bs-toggle="modal"
-                                data-bs-target={`#exampleModal-${foods.id}`}                  
-                                onClick={() => handleEdit(foods.id)}
+                                data-bs-target={`#exampleModal-${foods.id}`}                                               
                               >
                                 Edit
                               </Link>

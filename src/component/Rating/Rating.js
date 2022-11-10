@@ -7,82 +7,27 @@ import { BASE_URL, API_KEY } from "../../Environment";
 
 const Rating = () => {
   let { foodsID } = useParams();
+
   const [foods, setFoods] = useState();
   const [rating, setRating] = useState();
 
-  useEffect(() => {
-    axios({
-      method: "get",
-      url: `${BASE_URL}/api/v1/foods/${foodsID}`,
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-        apiKey: `${API_KEY}`,
-      },
-    })
-      .then((res) => {
-        setFoods(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [foodsID]);
-
-  const getRating = () => {
-    axios({
-      method: "get",
-      url: `${BASE_URL}/api/v1/food-rating/${foodsID}`,
-      headers: {
-        apiKey: `${API_KEY}`,
-      },
-    })
-      .then((res) => {
-        setRating(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  useEffect(() => {
-    getRating();
-  }, [foodsID]);
-
-  const handleSubmit = (e) => {
-    console.log(values);
-    e.preventDefault();
-    const values = formik.values;
-    axios({
-      method: "post",
-      url: `${BASE_URL}/api/v1/rate-food/${foodsID}`,
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-        apiKey: `${API_KEY}`,
-      },
-      data: {
-        rating: values.rating,
-        review: values.review,
-      },
-    })
-      .then((res) => {
-        console.log(res);
-        getRating();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  
 
   const formik = useFormik({
     initialValues: {
-        rating: "",
-        review: "",   
+      rating: "",
+      review: "",
     },
     validationSchema: Yup.object({
-        rating: Yup.string().required("Required"),
-        review: Yup.string().required("Required"),
+      rating: Yup.string().required("Required"),
+      review: Yup.string().required("Required"),
     }),
   });
-  return <div>Rating</div>;
+  return (
+    <>
+      <div>hello</div>
+    </>
+  );
 };
 
 export default Rating;
