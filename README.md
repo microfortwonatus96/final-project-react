@@ -1,5 +1,5 @@
 <h1 align="center">
-  <p align="center">Foods</p>
+  <p align="center">Foods Journal</p>
 </h1>
 
 ## Library & Framework
