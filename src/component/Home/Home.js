@@ -34,6 +34,50 @@ const Home = () => {
     getAllFoods();
   }, []);
 
+  const handleLikes = (id, isLike) => {
+    if (!isLike) {
+      axios({
+        method: "post",
+        url: `${BASE_URL}/api/v1/like`,
+        data: {
+          foodId: id,
+        },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem(`token`)}`,
+          apiKey: `${API_KEY}`,
+        },
+      })
+        .then((response) => {
+
+          console.log(response);
+          getAllFoods();
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      axios({
+        method: "post",
+        url: `${BASE_URL}/api/v1/unlike`,
+        data: {
+          foodId: id,
+        },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem(`token`)}`,
+          apiKey: `${API_KEY}`,
+        },
+      })
+        .then((response) => {
+          console.log(response);
+          getAllFoods();
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  
+  };
+
   return (
     <>
       <div className="home-section">
@@ -73,8 +117,21 @@ const Home = () => {
                         <div className="content" >
                           <h2 style={{marginBottom: '30px'}}>{foods.name}</h2>
                           <div className="d-flex justify-content-center gap-2">
-                            <i class="bi bi-star"></i>
-                            <p>{foods.rating}</p>                   
+                            <i
+                              className="fa-solid fa-heart"
+                              onClick={() =>
+                                handleLikes(foods.id, foods.isLike)
+                              }
+                              on
+                              style={{
+                                color: `${foods.isLike ? "red" : ""}`, cursor: 'pointer', fontSize:'25px'
+                              }}
+                            ></i>
+                            <p style={{position:'relative', bottom: '2px',fontSize:'20px' }}>{foods.totalLikes}</p>
+                            <Link className="d-flex gap-2 set-rating" to={`/rating/${foods.id}`}>
+                              <i class="fa-solid fa-star" style={{color:'#FFD700', fontSize:'25px'}}></i>
+                              <p style={{position:'relative', bottom: '2px',fontSize:'20px'}}>{foods.rating}</p>
+                            </Link>
                           </div>  
                           <div className="d-flex justify-content-center gap-2 mt-2">                
                             <div key={foods.id}>

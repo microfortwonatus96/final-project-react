@@ -56,49 +56,7 @@ export const Foods = () => {
     getAllFoods();
   }, []);
 
-  const handleLikes = (id, isLike) => {
-    if (!isLike) {
-      axios({
-        method: "post",
-        url: `${BASE_URL}/api/v1/like`,
-        data: {
-          foodId: id,
-        },
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem(`token`)}`,
-          apiKey: `${API_KEY}`,
-        },
-      })
-        .then((response) => {
 
-          console.log(response);
-          getAllFoods();
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } else {
-      axios({
-        method: "post",
-        url: `${BASE_URL}/api/v1/unlike`,
-        data: {
-          foodId: id,
-        },
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem(`token`)}`,
-          apiKey: `${API_KEY}`,
-        },
-      })
-        .then((response) => {
-          console.log(response);
-          getAllFoods();
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  
-  };
 
   const handleDelete = (id) => {
     if (window.confirm("are you sure you want to delete?")) {
@@ -165,7 +123,7 @@ export const Foods = () => {
       <h3 className="title-h3">All Foods</h3>
       <div className="d-flex justify-content-center">
         <Link
-          className="btn-create"
+          className="btn-create fw-bold"
           to={`/add-foods`}
         >
           Create Foods
@@ -187,25 +145,7 @@ export const Foods = () => {
                         />
                         <div className="content" style={{display:'flex', flexDirection: 'column', gap:'20px'}}>
                           <h5>{foods.name}</h5>
-                          <h3>{foods.ingredients}</h3>
-                          <div className="d-flex justify-content-center gap-2">
-                            <Link className="d-flex gap-2 set-rating" to={`/rating/${foods.id}`}>
-                              <i class="fa-solid fa-star" style={{color:'#FFD700', fontSize:'25px'}}></i>
-                              <p style={{position:'relative', bottom: '2px',fontSize:'20px'}}>{foods.rating}</p>
-                            </Link>
-                            <i
-                              className="fa-solid fa-heart"
-                              onClick={() =>
-                                handleLikes(foods.id, foods.isLike)
-                              }
-                              on
-                              style={{
-                                color: `${foods.isLike ? "red" : ""}`, cursor: 'pointer', fontSize:'25px'
-                              }}
-                            ></i>
-                            <p style={{position:'relative', bottom: '2px',fontSize:'20px' }}>{foods.totalLikes}</p>
-                          </div>
-                          {/* <p>isLike: {foods.isLike}</p> */}
+                          <h3>{foods.ingredients}</h3>              
                           <div className="d-flex justify-content-center gap-2">
                             <div>
                               <Link

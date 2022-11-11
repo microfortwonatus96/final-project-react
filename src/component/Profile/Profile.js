@@ -28,9 +28,9 @@ const Profile = () => {
         console.error(error);
         alert("Error, try reloading the page");
       });
-  }
+  };
   useEffect(() => {
-    getProfile()
+    getProfile();
   }, []);
 
   const handleSubmit = (e) => {
@@ -48,10 +48,10 @@ const Profile = () => {
         email: values.email,
         profilePictureUrl: savePicture,
         phoneNumber: values.phoneNumber,
-        role: values.role
+        role: values.role,
       },
     })
-    .then((response) => {
+      .then((response) => {
         console.log(response);
         axios({
           method: "post",
@@ -69,8 +69,8 @@ const Profile = () => {
           .then((response) => {
             console.log(response);
             localStorage.setItem("role", values.role);
-            alert("Update Profile Successful !!")
-            window.location.reload();
+            alert("Update Profile Successful !!");
+            window.location.reload()
           })
           .catch((error) => {
             console.log(error);
@@ -86,7 +86,7 @@ const Profile = () => {
       name: "",
       email: "",
       phoneNumber: "",
-      role: "",     
+      role: "",
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Required"),
@@ -98,28 +98,74 @@ const Profile = () => {
   return (
     <>
       <div className="box-container">
-        <div className="box-detail ">
-          <div>
-            <img
-              className="img-all-foods"
-              src={Profile.profilePictureUrl}
-              alt="All Foods"
-            />
-          </div>
-          <div>
-            <p>id: {Profile.id}</p>
-            <p>Name: {Profile.name}</p>
-            <p>Email: {Profile.email}</p>
-            <p>Role: {Profile.role}</p>
-            <p>Phone Number: {Profile.phoneNumber}</p>
-            <Link
-              className="btn btn-success"
-              style={{ fontSize: "0.75rem" }}
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              Edit
-            </Link>
+        <div>
+          <div
+            className="card mb-3 mx-auto  shadow"
+            style={{ maxWidth: `540px` }}
+          >
+            <div className="row g-0">
+              <div className="col-md-4">
+                <img
+                  src={Profile.profilePictureUrl}
+                  className="img-fluid m-2 shadow"
+                  style={{ height: "250px" }}
+                  alt={Profile.name}
+                />
+              </div>
+              <div className="col-md-8">
+                <div className="card-body">
+                  <h5 className="card-title" style={{ fontSize: "26px" }}>
+                    {Profile.name}
+                  </h5>
+                  <div className="d-flex gap-2 mt-4">
+                    <i
+                      class="bi bi-card-list"
+                      style={{ color: "#0d6efd", fontSize: "16px" }}
+                    ></i>
+                    <p className="text-desc" style={{ fontSize: "16px" }}>
+                      <span style={{ fontWeight: "bold", fontSize: "16px" }}>
+                        Email:
+                      </span>{" "}
+                      {Profile.email}
+                    </p>
+                  </div>
+                  <div className="d-flex gap-2" style={{ marginTop: "-20px" }}>
+                    <i
+                      class="bi bi-card-list"
+                      style={{ color: "#0d6efd", fontSize: "16px" }}
+                    ></i>
+                    <p className="text-desc" style={{ fontSize: "16px" }}>
+                      <span style={{ fontWeight: "bold", fontSize: "16px" }}>
+                        Role:
+                      </span>{" "}
+                      {Profile.role}
+                    </p>
+                  </div>
+                  <div className="d-flex gap-2" style={{ marginTop: "-20px" }}>
+                    <i
+                      class="bi bi-card-list"
+                      style={{ color: "#0d6efd", fontSize: "16px" }}
+                    ></i>
+                    <p className="text-desc" style={{ fontSize: "16px" }}>
+                      <span style={{ fontWeight: "bold", fontSize: "16px" }}>
+                        Phone Number :
+                      </span>{" "}
+                      {Profile.phoneNumber}
+                    </p>
+                  </div>
+                </div>
+                <div style={{ marginLeft: "15px" }}>
+                  <Link
+                    className="btn btn-success"
+                    style={{ fontSize: "0.75rem" }}
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                  >
+                    Edit
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -133,14 +179,7 @@ const Profile = () => {
       >
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
+            <h3 className="mt-2 text-center" style={{color:'#0d6efd'}}>Edit Profile</h3>
             <div
               class="modal-body"
               style={{ position: "relative", left: "-40px" }}
@@ -183,21 +222,6 @@ const Profile = () => {
                   <div>{formik.errors.email}</div>
                 ) : null}
 
-                <div className="col-md-6">
-                  <label for="inputAge" className="form-label">
-                    Role
-                  </label>
-                  {localStorage.getItem("role") === "admin" ? (
-                  <select label="Role" name="role" className="add-input" onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.role}>
-                    <option value="">Select a Role</option>
-                    <option value="admin">Admin</option>
-                    <option value="user">User</option>
-                  </select>
-                ) : null}
-                </div>
-        
                 <div className="col-md-12">
                   <label className="form-label">Food Image Upload</label>
                   <UploadImage
@@ -222,7 +246,6 @@ const Profile = () => {
                 {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
                   <div>{formik.errors.phoneNumber}</div>
                 ) : null}
-              
 
                 <div className="col-12">
                   <button type="submit" className="btn btn-success">

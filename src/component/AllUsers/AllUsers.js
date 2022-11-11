@@ -64,7 +64,7 @@ const AllUsers = () => {
 
   return (
     <>
-      <div className="bg-food box-all-users">
+      <div className="bg-food box-all-users" style={{backgroundColor: '#e3f2fd'}}>
         <h3 className="title-h3">All Users</h3>
         <div className="img-center">
           <div className="grid-img">

@@ -75,8 +75,8 @@ export const MyFavorite = () => {
   return (
     <>
     <section>
-      <div className="bg-food">
-        <h2 className="mt-5 fw-bold text-center">My Favorite</h2>
+      <div className="bg-food" style={{backgroundColor:'#e3f2fd'}}>
+        <h2 className="mt-5 fw-bold text-center" style={{color: '#0d6efd'}}>My Favorite</h2>
         <div className="img-center">
           <div className="grid-img">
           {MyFavorite &&

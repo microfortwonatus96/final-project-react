@@ -5,6 +5,7 @@ import { BASE_URL, API_KEY } from "../../Environment";
 import "../Navbar/Navbar.css";
 
 const Navbar = () => {
+  const name = localStorage.getItem("name");
   const renderLoginLogout = () => {
     if (localStorage.getItem("token") || localStorage.getItem("Email")) {
       const handleLogout = () => {
@@ -39,42 +40,58 @@ const Navbar = () => {
                   My Favorite
                 </Link>
               </li>
-              <li class="nav-item ">
-                <Link to="/foods" class="nav-link" style={{ color: "#fff" }}>
-                  Foods
-                </Link>
-              </li>            
+              {localStorage.getItem("role") === "admin" ? (
+                <li class="nav-item ">
+                  <Link to="/foods" class="nav-link" style={{ color: "#fff" }}>
+                    Foods
+                  </Link>
+                </li>
+              ) : null}
             </div>
-            
-            <div class="btn-group" style={{position: 'relative', left: '65vw'}}>
-              <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                Profile
+
+            <div
+              class="btn-group"
+              style={{ position: "relative", left: "65vw" }}
+            >
+              <button
+                type="button"
+                class="btn btn-primary dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {name}
               </button>
               <ul class="dropdown-menu ">
-                <li >
+                <li>
                   <Link
                     to="/profile-user"
                     className="nav-link btn-profile"
-                    style={{ color: "#000", paddingLeft: '10px' }}
+                    style={{ color: "#000", paddingLeft: "10px" }}
                   >
                     My Profile
                   </Link>
                 </li>
-                <li>
-                  <Link to="/all-users" class="nav-link btn-profile" style={{ color: "#000", paddingLeft: '10px' }}>
-                    All Users
+                {localStorage.getItem("role") === "admin" ? (
+                  <li>
+                    <Link
+                      to="/all-users"
+                      class="nav-link btn-profile"
+                      style={{ color: "#000", paddingLeft: "10px" }}
+                    >
+                      All Users
+                    </Link>
+                  </li>
+                ) : null}
+                <li className="nav-item">
+                  <Link
+                    className="nav-link btn-profile"
+                    href="#"
+                    onClick={handleLogout}
+                    style={{ color: "#000", paddingLeft: "10px" }}
+                  >
+                    Logout
                   </Link>
                 </li>
-                <li className="nav-item">
-                <Link
-                  className="nav-link btn-profile"
-                  href="#"
-                  onClick={handleLogout}
-                  style={{ color: "#000", paddingLeft: '10px' }}
-                >
-                  Logout
-                </Link>
-              </li>
               </ul>
             </div>
           </div>
@@ -94,30 +111,28 @@ const Navbar = () => {
     <>
       <nav class="navbar navbar-expand-lg bg-primary navbar-container">
         <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse " id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item ">
-                  <Link to="/" class="nav-link" style={{ color: "#fff" }}>
-                    Home
-                  </Link>
-                </li>
-                <li class="nav-item">{renderLoginLogout()}</li>
-              </ul>
-            </div>
-
+          <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item ">
+                <Link to="/" class="nav-link" style={{ color: "#fff" }}>
+                  Home
+                </Link>
+              </li>
+              <li class="nav-item">{renderLoginLogout()}</li>
+            </ul>
+          </div>
         </div>
       </nav>
     </>
