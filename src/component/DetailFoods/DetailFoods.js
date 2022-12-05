@@ -27,7 +27,7 @@ const DetailFoods = () => {
       .catch((error) => {
         console.error(error);
       });
-  });
+  },);
 
   return (
     <>

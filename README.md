@@ -14,6 +14,6 @@
 2. **npm start**
 ## Netlify
 
-- **https://micro-foods.netlify.app/**
+- **https://blues-foods.netlify.app**
 
 
